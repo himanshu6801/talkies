@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  * @author Himanshu
  */
+// Following is controller class
 @Controller
 public class TalkiesController {
 
