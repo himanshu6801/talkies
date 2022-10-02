@@ -5,18 +5,16 @@
  */
 package com.deltax.talkies.controller;
 
-import com.deltax.talkies.model.MovieDetails;
-import com.deltax.talkies.service.ActorService;
-import com.deltax.talkies.service.MovieService;
-import com.deltax.talkies.service.ProducerService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 /**
@@ -24,51 +22,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Himanshu
  */
 // Following is controller class
-@Controller
+@RestController
 public class TalkiesController {
+	
+	@Value("${env}")
+	private String env;
 
-    @Autowired
-    ActorService actorService;
 
-    @Autowired
-    MovieService movieService;
-
-    @Autowired
-    ProducerService producerService;
-
-    @GetMapping("/")
+    @GetMapping("/welcome")
     public String welcome() {
-        return "welcome";
-    }
-
-    @GetMapping("/login")
-    public String loginPage() {
-        return "login";
-    }
-
-//-----------------------------------------------------REst Start's Here--------------------------------------
-    @GetMapping("/allAccess")
-    @ResponseBody
-    public String allAccess() {
-        return "Accessed by any User";
-    }
-
-    @GetMapping("/movies")
-    @ResponseBody
-    public List<MovieDetails> getAllMovies() {
-        return movieService.getAllMovieDetails();
-    }
-
-    @PostMapping("/movie")
-    @ResponseBody
-    public void addMovie(@RequestBody String movie) {
-
-    }
-
-    @PutMapping("/movie")
-    @ResponseBody
-    public void updateMovie(@RequestBody String movie) {
-
+        return "Welcome To " + env + " Environment";
     }
 
 }

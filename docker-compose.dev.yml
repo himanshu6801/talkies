@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  app:
+    container_name: talkies-dev-server
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 5000:8080
+    environment:
+      - SPRING_PROFILE=dev
+    

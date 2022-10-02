@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+
+        <!-- Latest compiled and minified CSS -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+        <script>
+            angular.module("talkies-app", []).controller("talkies-controller", function ($scope, $http) {
+
+//                alert("in ctrl");
+
+                $scope.allMovies = [];
+
+                $http.get("movies").then(function (response) {
+
+                    $scope.allMovies = response.data;
+                    console.log($scope.allMovies);
+//                alert(response);
+                });
+
+            });
+
+
+
+        </script>
+        <style>
+            div{
+                /*border: blueviolet solid medium;*/
+            }
+            
+            img{
+    height: 170px;
+    width: 120px;
+            }
+            .movie-tile
+            {
+                /*padding:3px;*/
+                margin: 3px;
+                top: 100px;
+                /*background:black;*/
+    background:rgba(5,5,5,0.1);
+    padding: 25px;
+                
+            }
+            .movie-text{
+                
+                margin-left: 50px;
+            }
+            
+            </style>
+
+    </head>
+    
+    <body ng-app="talkies-app" ng-controller="talkies-controller">
+        
+        
+        <div class="container">
+            <div class=""> <h1>Talkies </h1></div>
+        <div ng-repeat="m in allMovies" class="col-md-6 col-xs-6 col-lg-6 row  movie-tile">
+            <div class="col-md-2 col-xs-2 col-lg-2 align-self-end"><img src="img/dunkirk.jpg" alt=""/></div>
+            
+            <div class="col-md-7 col-xs-7 col-lg-7 movie-text pull-right">
+                <header>{{m.movie.name}}</header>
+                <div> Date of Release: {{m.movie.year}}</div>
+                <div>Plot: {{m.movie.plot}}</div>
+                <div> Producer: {{m.producer.name}}</div>
+                <div> Cast: <span ng-repeat="a in m.actors">{{a.name}},</span></div>
+            </div>
+        </div>
+        </div>
+
+
+    </body>
+</html>

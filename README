@@ -1,0 +1,6 @@
+TO run talkies
+
+docker build -t talkies:<version> .
+docker run -p <host_port>:8080 -e SPRING_PROFILE=<profile>  talkies:<version>
+
+

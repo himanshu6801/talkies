@@ -22,15 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/allAccess","/").permitAll()		
-				.antMatchers("/movies").hasRole("USER")			
-				.and()
-			.formLogin()
-				.loginPage("/login")
-                        .usernameParameter("username")
-                        .passwordParameter("password")
-                        .defaultSuccessUrl("/talkies")
-                        ;	
+				.antMatchers("/allAccess","/").permitAll();	
 	}
 
 	@Autowired
