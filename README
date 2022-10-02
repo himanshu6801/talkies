@@ -4,3 +4,6 @@ docker build -t talkies:<version> .
 docker run -p <host_port>:8080 -e SPRING_PROFILE=<profile>  talkies:<version>
 
 
+Using docker compose
+docker-compose -f docker-compose.<profile>.yml -p <profile> up -d
+
